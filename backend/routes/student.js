@@ -1,9 +1,13 @@
-const express = require('express')
-const router = express.Router()
+import express from 'express';
 
-router.get('/',(req,res)=>{
-    res.send("STUDENT ROUTE")
-})
+const router = express.Router();
 
+router.get('/', (req, res) => {
+  res.send('STUDENT ROUTE');
+});
 
-module.exports = router
+router.get('/assignment', (req, res) => {
+  res.send('STUDENT Assignment');
+});
+
+export default router;

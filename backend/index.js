@@ -1,18 +1,27 @@
-const express = require('express')
-const cors = require('cors')
-const app = express()
-const student_route = require('./routes/student')
-const teacher_route = require('./routes/teacher')
-app.use(cors())
-app.use(express.json())
-app.use('/student',student_route)
-app.use('/teacher',teacher_route)
+import express from 'express';
+import cors from 'cors';
+import { PrismaClient } from '@prisma/client';
+import fs from 'fs';
+import dotenv from 'dotenv';
 
-app.post("/api/signup",(req,res)=>{
-    const {name,email,branch,roll} = req.body
-    console.log(name + email+ branch + roll)
-})
+import studentRoute from './routes/student.js';
+import teacherRoute from './routes/teacher.js';
+import authRoute from './routes/signin.js';
 
-app.listen(3000,(req,res)=>{
-    console.log(`app is listening on port 3000`)
-})
+dotenv.config();
+const app = express();
+const prisma = new PrismaClient();
+
+// Middleware
+app.use(cors());
+app.use(express.json());
+
+// Routes
+app.use('/student', studentRoute);
+app.use('/teacher', teacherRoute);
+app.use('/signin', authRoute);
+
+// Start server
+app.listen(3000, () => {
+    console.log(`🚀 Server is running on port 3000`);
+});
