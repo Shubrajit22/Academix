@@ -10,7 +10,7 @@ const Signin: React.FC<SigninProps> = () => {
   const [email, setEmail] = useState('');
   const [roll, setRoll] = useState('');
   const [branch, setBranch] = useState('');
-  const [role, setRole] = useState('');
+  const [role, setRole] = useState('STUDENT');
   const [dept, setDept] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();

@@ -22,24 +22,29 @@ model User {
   classesAsStudent Class[] @relation(name: "StudentRelation")
   classesAsTeacher Class[] @relation(name: "TeacherRelation")
 }
-
-model Content {
-  id          String   @id @default(uuid())
-  title       String
-  description String
-  file        Bytes
-  createdAt   DateTime @default(now())
-
-  teacherId    Int
-  teacher      User     @relation(fields: [teacherId], references: [id])
-}
  model Class{
   id         Int        @id@default(autoincrement())
   student    User       @relation(fields: [studentId], references: [id],name: "StudentRelation") 
   teacher    User       @relation(fields: [teacherId], references: [id],name: "TeacherRelation")
   studentId  Int
   teacherId  Int
+  contentId  String
+  contents   Content[]  
  }
+
+model Content {
+  id          String   @id @default(uuid())
+  title       String
+  description String?
+  file        Bytes
+  createdAt   DateTime @default(now())
+
+  teacherId    Int
+  teacher      User     @relation(fields: [teacherId], references: [id])
+  classId      Int  
+  class        Class     @relation(fields: [classId], references: [id])    
+}
+
 
 enum Role{
   STUDENT
