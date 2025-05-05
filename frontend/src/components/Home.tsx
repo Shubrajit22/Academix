@@ -1,116 +1,72 @@
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
+export default function Home() {
+  const [showModal, setShowModal] = useState(false);
+  const navigate = useNavigate();
 
-const Home = () => {
+  const handleRoleClick = (role: string) => {
+    navigate('/signin', { state: { role } });
+  };
+
   return (
-    <div style={{
-      fontFamily: 'Arial, sans-serif',
-      background: 'linear-gradient(135deg, #6a11cb, #2575fc)',
-      color: 'white',
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      justifyContent: 'center',
-      minHeight: '100vh',
-      textAlign: 'center',
-    }}>
-      <header style={{ marginBottom: '3rem' }}>
-        <h1 style={{
-          fontSize: '3rem',
-          marginBottom: '1rem',
-          textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',
-        }}>
-         Learning Management System
-        </h1>
-      </header>
-
-      <section style={{
-        display: 'flex',
-        justifyContent: 'center',
-        flexWrap: 'wrap',
-        maxWidth: '1000px',
-        marginBottom: '3rem',
-      }}>
-        <div style={{
-          background: 'rgba(255, 255, 255, 0.1)',
-          borderRadius: '8px',
-          padding: '2rem',
-          margin: '1rem',
-          width: '250px',
-          boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
-          transition: 'transform 0.3s ease',
-        }}
-          onMouseOver={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
-          onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center px-4">
+      <div className="text-center space-y-6">
+        <h1 className="text-5xl font-extrabold text-blue-700 drop-shadow-md">Welcome to LMS</h1>
+        <p className="text-gray-600 text-lg max-w-md mx-auto">
+          A modern learning platform for students and teachers to collaborate, learn, and grow.
+        </p>
+        <button
+          onClick={() => setShowModal(true)}
+          className="bg-blue-600 text-white px-8 py-3 rounded-lg shadow-md hover:bg-blue-700 transition duration-300 text-lg font-medium"
         >
-          <h2 style={{ marginBottom: '1rem', color: '#a0c4ff' }}>Machine Learning</h2>
-          <p style={{ lineHeight: '1.6' }}>Course on Machine Learning</p>
-        </div>
-        <div style={{
-          background: 'rgba(255, 255, 255, 0.1)',
-          borderRadius: '8px',
-          padding: '2rem',
-          margin: '1rem',
-          width: '250px',
-          boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
-          transition: 'transform 0.3s ease',
-        }}
-          onMouseOver={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
-          onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}
-        >
-          <h2 style={{ marginBottom: '1rem', color: '#a0c4ff' }}>HCI</h2>
-          <p style={{ lineHeight: '1.6' }}>Course on Human Computer Interfacing</p>
-        </div>
-        <div style={{
-          background: 'rgba(255, 255, 255, 0.1)',
-          borderRadius: '8px',
-          padding: '2rem',
-          margin: '1rem',
-          width: '250px',
-          boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
-          transition: 'transform 0.3s ease',
-        }}
-          onMouseOver={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
-          onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}
-        >
-          <h2 style={{ marginBottom: '1rem', color: '#a0c4ff' }}>French</h2>
-          <p style={{ lineHeight: '1.6' }}>Course on French</p>
-        </div>
-        <div style={{
-          background: 'rgba(255, 255, 255, 0.1)',
-          borderRadius: '8px',
-          padding: '2rem',
-          margin: '1rem',
-          width: '250px',
-          boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
-          transition: 'transform 0.3s ease',
-        }}
-          onMouseOver={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
-          onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}
-        >
-          <h2 style={{ marginBottom: '1rem', color: '#a0c4ff' }}>Notice</h2>
-          <p style={{ lineHeight: '1.6' }}>IT Dept Notice board</p>
-        </div>
-      </section>
-
-      <footer style={{ marginTop: '2rem' }}>
-        <button style={{
-          background: '#ffc107',
-          color: '#333',
-          padding: '1rem 2rem',
-          border: 'none',
-          borderRadius: '5px',
-          fontSize: '1.1rem',
-          cursor: 'pointer',
-          transition: 'background 0.3s ease',
-        }}
-          onMouseOver={(e) => e.currentTarget.style.background = '#ffca2c'}
-          onMouseOut={(e) => e.currentTarget.style.background = '#ffc107'}
-        >
-         Join Class
+          Login
         </button>
-      </footer>
+        <button
+          onClick={() => navigate('/signup')}
+          className="bg-green-600 text-white px-8 py-3 rounded-lg shadow-md hover:bg-blue-700 transition duration-300 text-lg font-medium"
+        >
+          Signup
+        </button>
+      </div>
+
+      {showModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center">
+          {/* Background overlay */}
+          <div
+            className="absolute inset-0 bg-black bg-opacity-50 backdrop-blur-sm"
+            onClick={() => setShowModal(false)}
+          />
+
+          {/* Modal */}
+          <div
+            className="relative z-10 bg-white rounded-xl shadow-xl w-full max-w-sm p-8 animate-fadeIn border border-gray-200"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <h2 className="text-2xl font-semibold text-gray-800 text-center mb-6">Login As</h2>
+            <div className="space-y-4">
+              <button
+                onClick={() => handleRoleClick('STUDENT')}
+                className="w-full bg-blue-500 text-white py-2.5 rounded-lg hover:bg-blue-600 transition font-medium text-lg"
+              >
+                Student
+              </button>
+              <button
+                onClick={() => handleRoleClick('TEACHER')}
+                className="w-full bg-green-500 text-white py-2.5 rounded-lg hover:bg-green-600 transition font-medium text-lg"
+              >
+                Teacher
+              </button>
+              <button
+                onClick={() => setShowModal(false)}
+                className="w-full border border-gray-300 text-gray-700 py-2.5 rounded-lg hover:bg-gray-100 transition font-medium text-lg"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
-};
-
-export default Home;
+}

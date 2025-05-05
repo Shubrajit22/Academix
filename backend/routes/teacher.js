@@ -30,7 +30,7 @@ router.get("/get-rooms/:teacher_id", async (req, res) => {
     }
 });
 
-router.post("/create-room", async (req, res) => {
+router.post("/create-class", async (req, res) => {
     const { name, teacher_id } = req.body;
     try {
         const existingRoom = await client.class.findFirst({ // Changed from client.room to client.class
