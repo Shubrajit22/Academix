@@ -1,4 +1,4 @@
-#LEARNING MANAGEMENT SYSTEM
+### LEARNING MANAGEMENT SYSTEM
 
 ### 🔹 **Phase 1: Authentication & User Management**
 
